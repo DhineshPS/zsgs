@@ -7,7 +7,7 @@ public class Program2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int num1 = 15, num2 = 8;
-		int bitwiseAnd, bitwiseOr, bitwiseXor, leftShift, rightShift, compliment;
+		int bitwiseAnd, bitwiseOr, bitwiseXor, leftShift, rightShift, compliment, unrightShift;
 		
 		bitwiseAnd = num1 & num2;
 		bitwiseOr = num1 | num2;
