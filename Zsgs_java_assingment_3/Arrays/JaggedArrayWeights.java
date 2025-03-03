@@ -1,10 +1,11 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class JaggedArrayWeights {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the number of persons (N):");
+        System.out.println("Enter the number of persons :");
         int n = scanner.nextInt();
 
         int[][] weights = new int[n][];
@@ -18,13 +19,12 @@ public class JaggedArrayWeights {
             }
         }
 
-        System.out.println("Enter the person index (0 to " + (n - 1) + ") and weight index to update:");
+        System.out.println("Enter the person index (0 to " + (n - 1) + ") to add a new weight:");
         int personIndex = scanner.nextInt();
-        int weightIndex = scanner.nextInt();
         System.out.println("Enter the new weight:");
         int newWeight = scanner.nextInt();
-        enterWeight(weights, personIndex, weightIndex, newWeight);
-        System.out.println("Updated weight of person " + (personIndex + 1) + " at index " + weightIndex + " is: " + weights[personIndex][weightIndex]);
+        enterWeight(weights, personIndex, newWeight);
+        System.out.println("Updated weights of person " + (personIndex + 1) + " are: " + Arrays.toString(weights[personIndex]));
 
         System.out.println("Enter the person index (0 to " + (n - 1) + ") to find the minimum weight:");
         int minWeightPersonIndex = scanner.nextInt();
@@ -32,11 +32,12 @@ public class JaggedArrayWeights {
         System.out.println("The minimum weight for person " + (minWeightPersonIndex + 1) + " is: " + minWeight);
     }
 
-    public static void enterWeight(int[][] weights, int personIndex, int weightIndex, int newWeight) {
-        if (personIndex < weights.length && weightIndex < weights[personIndex].length) {
-            weights[personIndex][weightIndex] = newWeight;
+    public static void enterWeight(int[][] weights, int personIndex, int newWeight) {
+        if (personIndex < weights.length) {
+            weights[personIndex] = Arrays.copyOf(weights[personIndex], weights[personIndex].length + 1);
+            weights[personIndex][weights[personIndex].length - 1] = newWeight;
         } else {
-            System.out.println("Invalid index");
+            System.out.println("Invalid person index");
         }
     }
 
