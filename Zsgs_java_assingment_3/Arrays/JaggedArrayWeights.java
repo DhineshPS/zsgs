@@ -18,11 +18,13 @@ public class JaggedArrayWeights {
             }
         }
 
-        System.out.println("Enter the person index (0 to " + (n - 1) + ") and weight index to retrieve:");
+        System.out.println("Enter the person index (0 to " + (n - 1) + ") and weight index to update:");
         int personIndex = scanner.nextInt();
         int weightIndex = scanner.nextInt();
-        int weight = getWeight(weights, personIndex, weightIndex);
-        System.out.println("Weight of person " + (personIndex + 1) + " at index " + weightIndex + " is: " + weight);
+        System.out.println("Enter the new weight:");
+        int newWeight = scanner.nextInt();
+        enterWeight(weights, personIndex, weightIndex, newWeight);
+        System.out.println("Updated weight of person " + (personIndex + 1) + " at index " + weightIndex + " is: " + weights[personIndex][weightIndex]);
 
         System.out.println("Enter the person index (0 to " + (n - 1) + ") to find the minimum weight:");
         int minWeightPersonIndex = scanner.nextInt();
@@ -30,12 +32,11 @@ public class JaggedArrayWeights {
         System.out.println("The minimum weight for person " + (minWeightPersonIndex + 1) + " is: " + minWeight);
     }
 
-    public static int getWeight(int[][] weights, int personIndex, int weightIndex) {
+    public static void enterWeight(int[][] weights, int personIndex, int weightIndex, int newWeight) {
         if (personIndex < weights.length && weightIndex < weights[personIndex].length) {
-            return weights[personIndex][weightIndex];
+            weights[personIndex][weightIndex] = newWeight;
         } else {
             System.out.println("Invalid index");
-            return -1;
         }
     }
 
