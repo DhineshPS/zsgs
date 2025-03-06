@@ -1,0 +1,10 @@
+package zoho_task2_1;
+
+public class Average_weight {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

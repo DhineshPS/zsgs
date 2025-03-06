@@ -1,0 +1,23 @@
+package zoho_task2_1;
+import java.util.Scanner;
+public class Average_weight {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("Number of People : ");
+		int numberOfPeople = scanner.nextInt();
+		
+		double sum = 0;
+			
+		for(int loop = 0; loop < numberOfPeople; loop++) {
+			System.out.print("Enter weight of " + (loop + 1) + " person in (KG): ");
+			sum += scanner.nextDouble();
+		}
+		
+		System.out.println("Average Weight of " + numberOfPeople + " person/persons is " + (sum / numberOfPeople) + "KG");
+		
+	}
+
+}

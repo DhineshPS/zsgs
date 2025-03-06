@@ -1,0 +1,10 @@
+package zoho_task2_1;
+
+public class Multiple_classes {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Class 1");
+	}
+
+}
