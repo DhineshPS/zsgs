@@ -6,6 +6,8 @@ public class Team {
     public String city;
     public String division;
     public String coachName;
+    private static int teamCount = 0;
+    private final int teamNumber;
 
     Scanner scanner = new Scanner(System.in);
     ArrayList<Player> teamPlayers = new ArrayList<>();
@@ -14,6 +16,7 @@ public class Team {
         this.teamName = teamName;
         this.city = city;
         this.division = division;
+        this.teamNumber = ++teamCount;
     }
 
     public void addPlayer(Player player) {
@@ -35,8 +38,9 @@ public class Team {
 
     public void displayTeam() {
         int num = 0;
+        System.out.println(teamNumber + ". Players of Team " + teamName);
         for(Player player : teamPlayers) {
-            System.out.println("Player " + ++num + " : " + player.playerName + " trained " + player.trainingCount + "times, Played " + player.playCount + " games");
+            System.out.println("Player " + ++num + " : " + player.playerName + " trained " + player.trainingCount + " times, Played " + player.playCount + " games");
         }
         System.out.println("Coach name : " + coachName);
     }

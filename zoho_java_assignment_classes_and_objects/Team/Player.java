@@ -24,4 +24,7 @@ public class Player {
         System.out.println(playerName + "with Jersey number : " + jerseyNumber + " is training");
     }
 
+    public void displayPlayer() {
+        System.out.println("Player : " + playerName);
+    } 
 }

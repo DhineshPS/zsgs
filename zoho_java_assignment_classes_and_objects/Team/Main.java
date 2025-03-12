@@ -34,6 +34,7 @@ public class Main {
         int numberOfTeams = scanner.nextInt();
         System.out.print("Enter number of Players in each team : ");
         int numberOfPlayers = scanner.nextInt();
+        scanner.nextLine();
         ArrayList<Team> teams = new ArrayList<>();
 
         //Team Creation
@@ -48,7 +49,7 @@ public class Main {
             Team team = new Team(teamName, city, division);
             team.hireCoach();
 
-            System.out.println("Enter " + numberOfPlayers + " number of players : ");
+            System.out.println("Enter " + numberOfPlayers + " players of team : ");
             
             //Player Creation
             for(int playerNo = 0; playerNo < numberOfPlayers; playerNo++) {
@@ -58,10 +59,12 @@ public class Main {
                 String position = scanner.nextLine();
                 System.out.println("Enter Player Jersey number : ");
                 int jerseyNumber = scanner.nextInt();
+                scanner.nextLine();
 
                 Player player = new Player(playerName, position, jerseyNumber);
                 team.addPlayer(player);
             }
+            teams.add(team);
         }
 
         boolean playOrTrain = true;
@@ -69,19 +72,106 @@ public class Main {
         while(playOrTrain) {
             System.out.println("==================================");
             System.out.println("1. Train Player");
-            System.out.println("2. Player Play");
+            System.out.println("2. Play Player");
             System.out.println("3. Play Team");
+            System.out.println("4. Display Team");
             System.out.println("4. Exit");
             System.out.println("==================================");
             System.out.println("Enter your choice : ");
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch(choice) {
+                
                 case 1 -> { 
-                    System.out.println("Enter Team name : ");
-                    String teamName = scanner.nextLine();
-                    System.out.println("Enter player to train : ");
-                    String playerName = scanner.nextLine();
+
+                    for(Team team : teams) {
+                        team.displayTeam();
+                    }
+
+                    System.out.print("Enter Team Number : ");
+                    int teamNumber = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if(teamNumber > teams.size() && teamNumber < 0) {
+                        System.out.println("Choose valid team");
+                        break;
+                    }
+                    else {
+                        Team currTeam = teams.get(teamNumber - 1);
+                        System.out.println("Enter Player Name : ");
+                        String pName = scanner.nextLine();
+
+                        for(Player player : currTeam.teamPlayers) {
+                            if(player.playerName.equals(pName)) {
+                                player.train();
+                            }
+                        }
+                    }
+                }
+
+                case 2 -> { 
+                    
+                    for(Team team : teams) {
+                        team.displayTeam();
+                    }
+
+                    System.out.print("Enter Team Number : ");
+                    int teamNumber = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if(teamNumber > teams.size() && teamNumber < 0) {
+                        System.out.println("Choose valid team");
+                        break;
+                    }
+                    else {
+                        Team currTeam = teams.get(teamNumber - 1);
+                        System.out.println("Enter Player Name : ");
+                        String pName = scanner.nextLine();
+
+                        for(Player player : currTeam.teamPlayers) {
+                            if(player.playerName.equals(pName)) {
+                                player.playGame();
+                            }
+                        }
+                    }
+                }
+
+                case 3 -> {
+                    for(Team team : teams) {
+                        team.displayTeam();
+                    }
+
+                    System.out.print("Enter Team Number : ");
+                    int teamNumber = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if(teamNumber > teams.size() && teamNumber < 0) {
+                        System.out.println("Choose valid team");
+                        break;
+                    }
+                    else {
+                        Team currTeam = teams.get(teamNumber - 1);
+                        currTeam.playGame();    
+                    }                    
+                }
+
+                case 4 -> {
+                    for(Team team : teams) {
+                        team.displayTeam();
+                    }
+                }
+
+                case 5 -> {
+                    System.out.println("=======");
+                    System.out.println("Exiting");
+                    System.out.println("=======");
+                    playOrTrain = false;
+                }
+
+                default -> {
+                    System.out.println("Enter Valid choice !!!");
+                    System.out.println();
                 }
             }
         }
