@@ -13,7 +13,7 @@ class SqueakyClean {
             } 
             else if (Character.isLetter(ch)) {
                 if (toUpperCase) {
-                    sb.append(Character.toUpperCase(ch)); 
+                    sb.append(ch - 32); 
                     toUpperCase = false;
                 } else {
                     sb.append(ch);
@@ -21,11 +21,11 @@ class SqueakyClean {
             } 
             else {
                 switch (ch) {
-                    case '4': sb.append('a'); break;
-                    case '3': sb.append('e'); break;
-                    case '0': sb.append('o'); break;
-                    case '1': sb.append('l'); break;
-                    case '7': sb.append('t'); break;
+                    case '4' -> sb.append('a');
+                    case '3' -> sb.append('e');
+                    case '0' -> sb.append('o');
+                    case '1' -> sb.append('l');
+                    case '7' -> sb.append('t');
                 }
             }
         }

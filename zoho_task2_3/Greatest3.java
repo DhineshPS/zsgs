@@ -12,6 +12,5 @@ public class Greatest3 {
         int greatest = (num1 > num2 && num2 > num3) ? num1 : (num2 > num3) ? num2 : num3;
 
         System.out.println("The greatest of 3 numbers is : " + greatest);
-        scanner.close();
     }
 }

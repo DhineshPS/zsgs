@@ -16,10 +16,10 @@ public class CapitalizeWords {
         boolean capitalizeNext = true;
 
         for (int i = 0; i < charArray.length; i++) {
-            if (Character.isWhitespace(charArray[i])) 
+            if (charArray[i] == ' ') 
                 capitalizeNext = true;
             else if (capitalizeNext) {
-                charArray[i] = Character.toUpperCase(charArray[i]);
+                charArray[i] -= 32;
                 capitalizeNext = false;
             }
         }

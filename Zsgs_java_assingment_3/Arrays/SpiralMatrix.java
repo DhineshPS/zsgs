@@ -3,46 +3,53 @@ import java.util.Scanner;
 public class SpiralMatrix {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the size of the matrix (N):");
+
+        System.out.println("Enter the number of rows (M):");
+        int m = scanner.nextInt();
+        System.out.println("Enter the number of columns (N):");
         int n = scanner.nextInt();
 
-        int[][] spiralMatrix = new int[n][n];
-        int top = 0, bottom = n - 1;
+        int[][] matrix = new int[m][n];
+        System.out.println("Enter the elements of the matrix:");
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Print the matrix in spiral order
+        System.out.println("Spiral Order:");
+        int top = 0, bottom = m - 1;
         int left = 0, right = n - 1;
-        int num = 1;
 
         while (top <= bottom && left <= right) {
+            // Traverse from left to right
             for (int i = left; i <= right; i++) {
-                spiralMatrix[top][i] = num++;
+                System.out.print(matrix[top][i] + " ");
             }
             top++;
 
+            // Traverse from top to bottom
             for (int i = top; i <= bottom; i++) {
-                spiralMatrix[i][right] = num++;
+                System.out.print(matrix[i][right] + " ");
             }
             right--;
 
+            // Traverse from right to left
             if (top <= bottom) {
                 for (int i = right; i >= left; i--) {
-                    spiralMatrix[bottom][i] = num++;
+                    System.out.print(matrix[bottom][i] + " ");
                 }
                 bottom--;
             }
 
+            // Traverse from bottom to top
             if (left <= right) {
                 for (int i = bottom; i >= top; i--) {
-                    spiralMatrix[i][left] = num++;
+                    System.out.print(matrix[i][left] + " ");
                 }
                 left++;
             }
-        }
-
-        System.out.println("Spiral Matrix:");
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print(spiralMatrix[i][j] + "\t");
-            }
-            System.out.println();
         }
     }
 }

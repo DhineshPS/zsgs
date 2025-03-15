@@ -29,10 +29,6 @@ public class EmailValidator {
 
         int dotIndex = domainPart.lastIndexOf('.');
 
-        if (dotIndex == -1 || dotIndex == 0 || dotIndex == domainPart.length() - 1) 
-            return false;
-        
-
-        return true;
+        return !(dotIndex == -1 || dotIndex == 0 || dotIndex == domainPart.length() - 1);
     }
 }

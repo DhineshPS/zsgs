@@ -29,7 +29,6 @@ public class Average_weight {
 		int personTen = scanner.nextInt();
 
 		int sum = personOne + personTwo + personThree + personFour + personFive + personSix + personSeven + personEight + personNine + personTen;
-		scanner.close();
 
 		double avgWeight = sum / numberOfPeople;
 		System.out.println("Average Weight of " + numberOfPeople + " person/persons is " + avgWeight + "KG");
