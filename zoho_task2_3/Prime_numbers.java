@@ -7,13 +7,12 @@ public class Prime_numbers {
     }
 
     static boolean isPrime(int num) {
-        int count = 0;
-        for(int i = 1; i <= num; i++) {
+        if(num < 2)
+            return false;
+        for(int i = 2; i * i <= num; i++) {
             if(num % i == 0)
-                count++;
+                return false;
         }
-        if(count == 2)
             return true;
-        return false;
     }
 }
