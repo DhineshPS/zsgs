@@ -3,6 +3,7 @@ package zoho_task2_1;
 import java.util.Scanner;
 
 public class Weekday {
+
     enum Day {
         MONDAY,
         TUESDAY,
@@ -12,6 +13,7 @@ public class Weekday {
         SATURDAY,
         SUNDAY;
     }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter Day number : ");
@@ -21,6 +23,8 @@ public class Weekday {
             System.out.println(Day.values()[day - 1]);
         else
             System.out.println("Not a Weekday");
+
+        scanner.close();
 
     }
 }

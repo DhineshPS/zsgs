@@ -15,7 +15,7 @@ public class Average_weight {
 			sum += scanner.nextDouble();
 		}
 		 */
-		int numberOfPeople = 10;
+		double numberOfPeople = 10;
 
 		int personOne = scanner.nextInt();
 		int personTwo = scanner.nextInt();

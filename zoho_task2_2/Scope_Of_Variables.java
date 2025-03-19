@@ -12,6 +12,6 @@ public class Scope_Of_Variables {
         System.out.println("\nOutside if block:");
         System.out.println("outsideVar: " + outsideVar); // Accessible
 
-        //System.out.println("insideVar: " + insideVar); // Compiler Error: Cannot find symbol 'insideVar'
+        //System.out.println("insideVar: " + insideVar); Compiler Error: Cannot find symbol 'insideVar'
     }
 }
