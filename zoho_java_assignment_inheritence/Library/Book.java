@@ -3,12 +3,18 @@ import java.util.ArrayList;
 public class Book {
     private String title;
     private String author;
+    private int duedate;
     private int isbn;
     private String publication;
-    private int dueDate;
     private boolean reservationStatus;
     
     ArrayList<String> feedback = new ArrayList<>();
+
+    public Book(String title, String author, int duedate) {
+        this.title = title;
+        this.author = author;
+        this.duedate = duedate;
+    }
 
     public String getTitle() {
         return this.title;
@@ -27,7 +33,7 @@ public class Book {
     }
 
     public int getDuedate() {
-        return this.dueDate;
+        return this.duedate;
     }
 
     public void setTitle(String title) {
@@ -47,15 +53,13 @@ public class Book {
     }
 
     public void setDueDate(int dueDate) {
-        this.dueDate = dueDate;
+        this.duedate = dueDate;
     }
 
-    public void display() {
-        System.out.println("Book Title : " + this.title);
-        System.out.println("Book Author : " + this.author);
-        System.out.println("Book ISBN : " + this.isbn);
-        System.out.println("Book publication : " + this.publication);
-        System.out.println();
+    public void displayBookDetails() {
+        System.out.println("Title: " + this.title);
+        System.out.println("Author: " + this.author);
+        System.out.println("Due Date (days overdue): " + this.duedate);
     }
 
     public int showDueDate() {
@@ -77,6 +81,6 @@ public class Book {
     }
 
     void renewInfo(int renewDate) {
-        this.dueDate += renewDate;
+        this.duedate += renewDate;
     }
 }
