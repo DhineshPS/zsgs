@@ -17,8 +17,4 @@ public class Circle extends Shape{
         circumference = 2 * Math.PI * radius;
         return circumference;
     }
-
-    public double fun() {
-        return this.area;
-    }
 }
