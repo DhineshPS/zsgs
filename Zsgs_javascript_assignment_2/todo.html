@@ -4,76 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
-    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container-wrapper">
-        <div class="lcontainer">
-            <h1>To-Do!</h1>
-            <label for="task">Task:</label>
-            <input type="text" id="task" name="task" placeholder="Enter your task" required>
-            <br><br>
+    <div class="container">
+        
+        <!-- Left Side - Task Input -->
+        <div class="left-panel">
+            <h1>📝 Add Task</h1>
 
-            <label for="dueDate">Due Date:</label>
-            <input type="date" id="dueDate" name="dueDate" required>
-            <br><br>
+            <label>Task Name:</label>
+            <input type="text" id="taskInput" placeholder="Enter task name...">
 
-            <label for="category">Category:</label>
-            <select id="category" name="category" required>
-                <option value="" disabled selected>Select a category</option>
-                <option value="Work">Work</option>
-                <option value="Personal">Personal</option>
+            <label>Due Date:</label>
+            <input type="date" id="dueDateInput">
+
+            <label>Priority:</label>
+            <select id="prioritySelect">
+                <option value="Low">🟢 Low</option>
+                <option value="Medium">🟡 Medium</option>
+                <option value="High">🔴 High</option>
             </select>
-            <br><br>
 
-            <fieldset class="priority">
-                <legend>Priority:</legend>
-                <div class="priority-item">
-                    <label for="urgent">Urgent</label>
-                    <input type="radio" id="urgent" name="priority" value="Urgent" required>
-                </div>
-                <div class="priority-item">
-                    <label for="important">Important</label>
-                    <input type="radio" id="important" name="priority" value="Important">
-                </div>
-                <div class="priority-item">
-                    <label for="not-urgent">Not Urgent</label>
-                    <input type="radio" id="not-urgent" name="priority" value="Not Urgent">
-                </div>
-                <div class="priority-item">
-                    <label for="not-important">Not Important</label>
-                    <input type="radio" id="not-important" name="priority" value="Not Important">
-                </div>
-            </fieldset>
-            <br>
+            <label>Category:</label>
+            <select id="categorySelect">
+                <option value="Work">📁 Work</option>
+                <option value="Personal">🏠 Personal</option>
+                <option value="Urgent">⚠ Urgent</option>
+            </select>
 
-            <button type="submit" onclick = "addTask()">Add Task</button>
-            <button type="reset" onclick = "resetList()">Reset</button>
+            <button onclick="addTask()">➕ Add Task</button>
         </div>
 
-        <div class="rcontainer">
-            <h2>Filter Tasks</h2>
-            <div class="box">
-                <button onclick="filterByPriority('Urgent')">Show Urgent Tasks</button>
-                <button onclick="filterByPriority('Important')">Show Important Tasks</button>
-                <button onclick="filterByPriority('Not Urgent')">Show Not Urgent Tasks</button>
-                <button onclick="filterByPriority('Not Important')">Show Not Important Tasks</button>
+        <!-- Right Side - Task List -->
+        <div class="right-panel">
+            <h1>📋 Task List</h1>
+
+            <div class="filters">
+                <label>📌 Filter by category:</label>
+                <select id="filterCategory" onchange="filterTasks()">
+                    <option value="All">All</option>
+                    <option value="Work">📁 Work</option>
+                    <option value="Personal">🏠 Personal</option>
+                    <option value="Urgent">⚠ Urgent</option>
+                </select>
             </div>
-            <br><br>
-            <div class="box">
-                <button onclick="filterByDueDate()">Show Tasks by Due Date</button>
-                <button onclick="filterByCategory('Work')">Show Work Tasks</button>
-                <button onclick="filterByCategory('Personal')">Show Personal Tasks</button>
-            </div>
-            <br><br>
-            <div class="box">
-                <button onclick="showAllTasks()">Show All Tasks</button>
-                <button onclick="clearAllTasks()">Clear All Tasks</button>
-                <button onclick="completedTasks()">Completed Tasks</button>
-            </div>
+
+            <ul id="taskList"></ul>
+
+            <button class="clear-btn" onclick="clearAllTasks()">🗑 Clear All Tasks</button>
         </div>
+
     </div>
 
-    <script src = "todo.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

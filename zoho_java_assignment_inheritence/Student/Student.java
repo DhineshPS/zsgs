@@ -12,14 +12,6 @@ public class Student {
         this.studentName = studentName;
     }
 
-    void setStudentID(int studentID) {
-        this.studentID = studentID;
-    }
-
-    void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
     int getStudentID() {
         return this.studentID;
     }

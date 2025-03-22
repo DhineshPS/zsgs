@@ -14,22 +14,7 @@ public class ZSGSStudent extends Student {
         this.zsMail = zsMail;
     }
 
-    void setUniqueID(int uniqueID) {
-        this.uniqueID = uniqueID;
-    }
-
-    void setZsMail(String zsMail) {
-        this.zsMail = zsMail;
-    }
-
-    int getUniqueID() {
-        return this.uniqueID;
-    }
-
-    String getZsMail() {
-        return this.zsMail;
-    }
-
+    @Override
     void display() {
         System.out.println("Student ID : " + super.getStudentID());
         System.out.println("Student Name : " + super.getStudentName());

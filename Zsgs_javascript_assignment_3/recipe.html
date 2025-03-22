@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Book</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Recipe Book</h1>
+        <input type="text" id="searchInput" placeholder="Search recipes...">
+    </header>
+
+    <div class="filters">
+        <select id="categorySelect"></select>
+        <select id="areaSelect"></select>
+    </div>
+
+    <div id="recipesContainer"></div>
+
+    <div id="recipeDetails" class="hidden">
+        <button id="closeBtn">Close</button>
+        <div id="recipeContent"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
