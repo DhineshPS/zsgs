@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Left Side - Task Input -->
+        <div class="left-panel">
+            <h1>📝 Add Task</h1>
+
+            <label>Task Name:</label>
+            <input type="text" id="taskInput" placeholder="Enter task name...">
+
+            <label>Due Date:</label>
+            <input type="date" id="dueDateInput">
+
+            <label>Priority:</label>
+            <select id="prioritySelect">
+                <option value="Low">🟢 Low</option>
+                <option value="Medium">🟡 Medium</option>
+                <option value="High">🔴 High</option>
+            </select>
+
+            <label>Category:</label>
+            <select id="categorySelect">
+                <option value="Work">📁 Work</option>
+                <option value="Personal">🏠 Personal</option>
+                <option value="Urgent">⚠ Urgent</option>
+            </select>
+
+            <button onclick="addTask()">➕ Add Task</button>
+        </div>
+
+        <!-- Right Side - Task List -->
+        <div class="right-panel">
+            <h1>📋 Task List</h1>
+
+            <div class="filters">
+                <label>📌 Filter by category:</label>
+                <select id="filterCategory" onchange="filterTasks()">
+                    <option value="All">All</option>
+                    <option value="Work">📁 Work</option>
+                    <option value="Personal">🏠 Personal</option>
+                    <option value="Urgent">⚠ Urgent</option>
+                </select>
+            </div>
+
+            <ul id="taskList"></ul>
+
+            <button class="clear-btn" onclick="clearAllTasks()">🗑 Clear All Tasks</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
