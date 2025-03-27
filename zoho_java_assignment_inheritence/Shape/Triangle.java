@@ -1,8 +1,8 @@
 public class Triangle extends Shape {
     private int breadth;
     private int height;
+    
     public Triangle(int breadth, int height) {
-        super(breadth, height);
         this.breadth = breadth;
         this.height = height;
     }
