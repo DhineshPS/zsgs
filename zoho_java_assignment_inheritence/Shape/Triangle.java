@@ -1,21 +1,18 @@
 public class Triangle extends Shape {
-    private int breadth;
-    private int height;
-    
+
     public Triangle(int breadth, int height) {
-        this.breadth = breadth;
-        this.height = height;
+        super(breadth, height);
     }
 
     @Override
     public double area() {
-        area = 0.5 * breadth * height;
+        area = 0.5 * super.getArea();
         return area;
     }
 
     @Override
     public double circumference() {
-        circumference = breadth + height + Math.sqrt(Math.pow(breadth, 2) + Math.pow(height, 2));
+        circumference = dimension1 + dimension2 + Math.sqrt(Math.pow(dimension1, 2) + Math.pow(dimension2, 2));
         return circumference;
     }
     

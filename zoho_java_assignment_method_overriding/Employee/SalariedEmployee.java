@@ -10,9 +10,7 @@ public class SalariedEmployee extends Employee{
 
     @Override
     void getEmployeeDetails() {
-        System.out.println("Employee name : " + empName);
-        System.out.println("Emplyee designation : " + designation);
-        System.out.println("Employee age : " + age);
+        super.getEmployeeDetails();
         System.out.println("Emplyee Hourly Salary : " + monthlySalary);
         System.out.println("Employee Work hours : " + workDays);
     }

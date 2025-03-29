@@ -10,9 +10,15 @@ public class HourlyEmployee extends Employee{
 
     @Override
     void getEmployeeDetails() {
-        super.getEmployeeDetails();
+        System.out.println("Emplyee Name : " + empName);
+        System.out.println("Employee designation : " + designation);
+        System.out.println("Emplyee age : " + age);
         System.out.println("Emplyee Hourly Salary : " + hourlySalary);
         System.out.println("Employee Work hours : " + workHours);
     }
     
+    @Override
+    double calculatePay() {
+        return hourlySalary * workHours;
+    }
 }

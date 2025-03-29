@@ -1,12 +1,8 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    private static LibraryDatabase libraryDatabase = new LibraryDatabase();
-    private static Librarian librarian = new Librarian("Alice", 101, "password123");
-    private static ArrayList<Student> students = new ArrayList<>();
-    private static ArrayList<Staff> staffMembers = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
+    private static LMS lms = new LMS();
 
     public static void main(String[] args) {
         initializeLibrary();
@@ -44,9 +40,9 @@ public class Main {
         Book book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 5);
         Book book2 = new Book("1984", "George Orwell", 0);
         Book book3 = new Book("To Kill a Mockingbird", "Harper Lee", 2);
-        libraryDatabase.addBook(book1);
-        libraryDatabase.addBook(book2);
-        libraryDatabase.addBook(book3);
+        lms.librarianAddBook(book1);
+        lms.librarianAddBook(book2);
+        lms.librarianAddBook(book3);
     }
 
     private static void librarianMenu() {
@@ -54,7 +50,7 @@ public class Main {
         String librarianName = scanner.next();
         System.out.print("Enter Librarian Password: ");
         String librarianPassword = scanner.next();
-        if (librarian.verifyLibrarian(librarianName, librarianPassword)) {
+        if (lms.login(librarianName, librarianPassword)) {
             while (true) {
                 System.out.println("\nLibrarian Menu");
                 System.out.println("1. Add Book");
@@ -74,25 +70,23 @@ public class Main {
                         System.out.print("Enter Book Due Days: ");
                         int dueDays = scanner.nextInt();
                         Book newBook = new Book(title, author, dueDays);
-                        librarian.addBook(newBook);
-                        libraryDatabase.addBook(newBook);
+                        lms.librarianAddBook(newBook);
                         break;
                     case 2:
                         System.out.print("Enter Book Title to Remove: ");
                         String removeTitle = scanner.next();
-                        librarian.removeBook(new Book(removeTitle, "", 0));
-                        libraryDatabase.deleteBook(removeTitle);
+                        lms.librarianRemoveBook(removeTitle);
                         break;
                     case 3:
                         System.out.print("Enter Book Title to Search: ");
                         String searchTitle = scanner.next();
-                        librarian.searchBook(searchTitle);
+                        lms.librarianSearchBook(searchTitle);
                         break;
                     case 4:
-                        libraryDatabase.displayBooks();
+                        lms.librarianDisplayBooks();
                         break;
                     case 5:
-                        System.out.println("Librarian Logged Out.");
+                        lms.logout();
                         return;
                     default:
                         System.out.println("Invalid Choice!");
@@ -108,45 +102,38 @@ public class Main {
         String studentName = scanner.next();
         System.out.print("Enter Student ID: ");
         int studentId = scanner.nextInt();
-        Student student = new Student(studentName, studentId, "10th Grade");
-        students.add(student);
-        student.verify(studentName, studentId);
-        Account studentAccount = new Account();
+        if (lms.register(studentName, "password", "password")) {
+            Account studentAccount = new Account();
 
-        while (true) {
-            System.out.println("\nStudent Menu");
-            System.out.println("1. Borrow Book");
-            System.out.println("2. Return Book");
-            System.out.println("3. Display Account Details");
-            System.out.println("4. Logout");
-            System.out.print("Enter your choice: ");
-            int studentChoice = scanner.nextInt();
+            while (true) {
+                System.out.println("\nStudent Menu");
+                System.out.println("1. Borrow Book");
+                System.out.println("2. Return Book");
+                System.out.println("3. Display Account Details");
+                System.out.println("4. Logout");
+                System.out.print("Enter your choice: ");
+                int studentChoice = scanner.nextInt();
 
-            switch (studentChoice) {
-                case 1:
-                    System.out.print("Enter Book Title to Borrow: ");
-                    String borrowTitle = scanner.next();
-                    for (Book book : libraryDatabase.getBooks()) {
-                        if (book.getTitle().equalsIgnoreCase(borrowTitle)) {
-                            student.borrowBook(studentAccount, book);
-                            libraryDatabase.deleteBook(borrowTitle);
-                            break;
-                        }
-                    }
-                    break;
-                case 2:
-                    System.out.print("Enter Book Title to Return: ");
-                    String returnTitle = scanner.next();
-                    student.returnBook(studentAccount, new Book(returnTitle, "", 0));
-                    break;
-                case 3:
-                    studentAccount.displayAccount();
-                    break;
-                case 4:
-                    System.out.println("Student Logged Out.");
-                    return;
-                default:
-                    System.out.println("Invalid Choice!");
+                switch (studentChoice) {
+                    case 1:
+                        System.out.print("Enter Book Title to Borrow: ");
+                        String borrowTitle = scanner.next();
+                        lms.userBorrowBook(studentAccount, borrowTitle);
+                        break;
+                    case 2:
+                        System.out.print("Enter Book Title to Return: ");
+                        String returnTitle = scanner.next();
+                        lms.userReturnBook(studentAccount, new Book(returnTitle, "", 0));
+                        break;
+                    case 3:
+                        lms.userDisplayAccountDetails(studentAccount);
+                        break;
+                    case 4:
+                        lms.logout();
+                        return;
+                    default:
+                        System.out.println("Invalid Choice!");
+                }
             }
         }
     }
@@ -156,51 +143,44 @@ public class Main {
         String staffName = scanner.next();
         System.out.print("Enter Staff ID: ");
         int staffId = scanner.nextInt();
-        Staff staff = new Staff(staffName, staffId, "Computer Science");
-        staffMembers.add(staff);
-        staff.verify(staffName, staffId);
-        Account staffAccount = new Account();
+        if (lms.register(staffName, "password", "password")) {
+            Account staffAccount = new Account();
 
-        while (true) {
-            System.out.println("\nStaff Menu");
-            System.out.println("1. Borrow Book");
-            System.out.println("2. Return Book");
-            System.out.println("3. Mark Book as Lost");
-            System.out.println("4. Display Account Details");
-            System.out.println("5. Logout");
-            System.out.print("Enter your choice: ");
-            int staffChoice = scanner.nextInt();
+            while (true) {
+                System.out.println("\nStaff Menu");
+                System.out.println("1. Borrow Book");
+                System.out.println("2. Return Book");
+                System.out.println("3. Mark Book as Lost");
+                System.out.println("4. Display Account Details");
+                System.out.println("5. Logout");
+                System.out.print("Enter your choice: ");
+                int staffChoice = scanner.nextInt();
 
-            switch (staffChoice) {
-                case 1:
-                    System.out.print("Enter Book Title to Borrow: ");
-                    String borrowTitle = scanner.next();
-                    for (Book book : libraryDatabase.getBooks()) {
-                        if (book.getTitle().equalsIgnoreCase(borrowTitle)) {
-                            staff.borrowBook(staffAccount, book);
-                            libraryDatabase.deleteBook(borrowTitle);
-                            break;
-                        }
-                    }
-                    break;
-                case 2:
-                    System.out.print("Enter Book Title to Return: ");
-                    String returnTitle = scanner.next();
-                    staff.returnBook(staffAccount, new Book(returnTitle, "", 0));
-                    break;
-                case 3:
-                    System.out.print("Enter Book Title to Mark as Lost: ");
-                    String lostTitle = scanner.next();
-                    staffAccount.markBookAsLost(new Book(lostTitle, "", 0));
-                    break;
-                case 4:
-                    staffAccount.displayAccount();
-                    break;
-                case 5:
-                    System.out.println("Staff Logged Out.");
-                    return;
-                default:
-                    System.out.println("Invalid Choice!");
+                switch (staffChoice) {
+                    case 1:
+                        System.out.print("Enter Book Title to Borrow: ");
+                        String borrowTitle = scanner.next();
+                        lms.userBorrowBook(staffAccount, borrowTitle);
+                        break;
+                    case 2:
+                        System.out.print("Enter Book Title to Return: ");
+                        String returnTitle = scanner.next();
+                        lms.userReturnBook(staffAccount, new Book(returnTitle, "", 0));
+                        break;
+                    case 3:
+                        System.out.print("Enter Book Title to Mark as Lost: ");
+                        String lostTitle = scanner.next();
+                        staffAccount.markBookAsLost(new Book(lostTitle, "", 0));
+                        break;
+                    case 4:
+                        lms.userDisplayAccountDetails(staffAccount);
+                        break;
+                    case 5:
+                        lms.logout();
+                        return;
+                    default:
+                        System.out.println("Invalid Choice!");
+                }
             }
         }
     }
