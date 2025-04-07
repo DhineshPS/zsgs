@@ -3,8 +3,6 @@ import java.util.Scanner;
 public class Quadratic_Equation {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        // Taking user input for coefficients
         System.out.print("Enter coefficient a: ");
         double a = scanner.nextDouble();
 

@@ -33,8 +33,10 @@ async function fetchRecipes() {
     const area = areaSelect.value;
 
     let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + query;
-    if (!query && category) url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
-    if (!query && area) url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`;
+    if (!query && category) 
+        url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
+    if (!query && area) 
+        url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`;
 
     const res = await fetch(url);
     const data = await res.json();

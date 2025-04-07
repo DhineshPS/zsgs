@@ -38,10 +38,14 @@ function editTask(index) {
     let newPriority = prompt("Edit Priority (Low, Medium, High):", tasks[index].priority);
     let newCategory = prompt("Edit Category (Work, Personal, Urgent):", tasks[index].category);
 
-    if (newTaskText !== null) tasks[index].text = newTaskText;
-    if (newDueDate !== null) tasks[index].dueDate = newDueDate;
-    if (newPriority !== null) tasks[index].priority = newPriority;
-    if (newCategory !== null) tasks[index].category = newCategory;
+    if (newTaskText !== null) 
+        tasks[index].text = newTaskText;
+    if (newDueDate !== null) 
+        tasks[index].dueDate = newDueDate;
+    if (newPriority !== null) 
+        tasks[index].priority = newPriority;
+    if (newCategory !== null) 
+        tasks[index].category = newCategory;
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
     loadTasks();
