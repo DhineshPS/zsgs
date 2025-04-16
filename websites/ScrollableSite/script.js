@@ -1,31 +1,31 @@
 document.getElementById("addQuestion").addEventListener("click", function () {
-    const questionInput = document.getElementById("questionInput").value;
-    const answerInput = document.getElementById("answerInput").value;
+    let questionInput = document.getElementById("questionInput").value;
+    let answerInput = document.getElementById("answerInput").value;
 
     if (questionInput.trim() === "" || answerInput.trim() === "") {
         alert("Please enter both a question and an answer.");
         return;
     }
 
-    const questionContainer = document.getElementById("questionsContainer");
-    const tocList = document.getElementById("tocList");
+    let questionContainer = document.getElementById("questionsContainer");
+    let tocList = document.getElementById("tocList");
 
-    const section = document.createElement("section");
+    let section = document.createElement("section");
     section.classList.add("question");
     section.id = "q" + (tocList.children.length + 1);
     
-    const questionTitle = document.createElement("h3");
+    let questionTitle = document.createElement("h3");
     questionTitle.innerText = (tocList.children.length + 1) + ". " + questionInput;
 
-    const answerText = document.createElement("p");
+    let answerText = document.createElement("p");
     answerText.innerText = answerInput;
 
     section.appendChild(questionTitle);
     section.appendChild(answerText);
     questionContainer.appendChild(section);
 
-    const listItem = document.createElement("li");
-    const link = document.createElement("a");
+    let listItem = document.createElement("li");
+    let link = document.createElement("a");
     link.href = "#" + section.id;
     link.innerText = questionTitle.innerText;
 
@@ -39,9 +39,7 @@ document.getElementById("addQuestion").addEventListener("click", function () {
 document.getElementById("tocList").addEventListener("click", function (e) {
     if (e.target.tagName === "A") {
         e.preventDefault();
-        document.querySelector(e.target.getAttribute("href")).scrollIntoView({
-            behavior: "smooth"
-        });
+        document.querySelector(e.target.getAttribute("href")).scrollIntoView({behavior: "smooth"});
     }
 });
 
