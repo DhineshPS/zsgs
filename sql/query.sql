@@ -88,7 +88,7 @@ GROUP BY m.movie_id
 ORDER BY fan_count DESC
 LIMIT 5;
 
--- 4. Specific Questions (Extra Query Set)
+-- 4. Extra Questions
 
 -- a. Who loves romantic movies?
 SELECT DISTINCT s.name
