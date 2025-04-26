@@ -1,3 +1,5 @@
+package state.sb;
+
 public class StatesAndBehaviors {
     int defaultNum = 4;
     public int publicNum = 4;
