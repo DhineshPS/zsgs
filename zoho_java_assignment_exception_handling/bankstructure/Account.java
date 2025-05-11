@@ -33,14 +33,8 @@ public class Account {
         return this.balance;
     }
 
-    public void checkpin(String pin) {
-        try {
+    public void checkpin(String pin) throws WrongPinException {
             if(!this.pin.equals(pin))
                 throw new WrongPinException();
-            System.out.println("Correct Pin");
-        }
-        catch(WrongPinException e) {
-            System.out.println(e);
-        }
     }
 }
