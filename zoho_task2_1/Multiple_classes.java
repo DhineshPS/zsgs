@@ -7,8 +7,6 @@ public class Multiple_classes {
 	}
 
 }
-// A source file can have atmost of one public class -> one or zero public class / rest are default classes
-// .class file is created for all the classes and only one is executed by user
 class Class_1 {
 
 	public static void main(String[] args) {
