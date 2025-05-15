@@ -18,11 +18,11 @@ public class Even_Sum {
                 sum1 += num;
         
         for(int num : arr2)
-            if(num % 2 == 0)
+            if(num % 2 != 0)
                 sum2 += num;
         
         System.out.println("Sum of even numbers = " + sum1);
-        System.out.println("Sum of even numbers = " + sum2);
+        System.out.println("Sum of odd numbers = " + sum2);
 
     }
 }
