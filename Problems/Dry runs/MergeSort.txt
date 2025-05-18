@@ -1,0 +1,73 @@
+Initial Array: [34, 23, 67, 87, 21, 12, 9]
+
+Calling mergeSort on [34, 23, 67, 87, 21, 12, 9]
+
+Dividing [34, 23, 67, 87, 21, 12, 9] into
+Left: [34, 23, 67]
+Right: [87, 21, 12, 9]
+
+Calling mergeSort on [34, 23, 67]
+Dividing [34, 23, 67] into
+Left: [34]
+Right: [23, 67]
+
+Calling mergeSort on [34]
+Single element, returning [34]
+
+Calling mergeSort on [23, 67]
+Dividing [23, 67] into
+Left: [23]
+Right: [67]
+
+Calling mergeSort on [23]
+Single element, returning [23]
+
+Calling mergeSort on [67]
+Single element, returning [67]
+
+Merging [23] and [67]
+Result after merge: [23, 67]
+
+Merging [34] and [23, 67]
+Result after merge: [23, 34, 67]
+
+Calling mergeSort on [87, 21, 12, 9]
+Dividing [87, 21, 12, 9] into
+Left: [87, 21]
+Right: [12, 9]
+
+Calling mergeSort on [87, 21]
+Dividing [87, 21] into
+Left: [87]
+Right: [21]
+
+Calling mergeSort on [87]
+Single element, returning [87]
+
+Calling mergeSort on [21]
+Single element, returning [21]
+
+Merging [87] and [21]
+Result after merge: [21, 87]
+
+Calling mergeSort on [12, 9]
+Dividing [12, 9] into
+Left: [12]
+Right: [9]
+
+Calling mergeSort on [12]
+Single element, returning [12]
+
+Calling mergeSort on [9]
+Single element, returning [9]
+
+Merging [12] and [9]
+Result after merge: [9, 12]
+
+Merging [21, 87] and [9, 12]
+Result after merge: [9, 12, 21, 87]
+
+Merging [23, 34, 67] and [9, 12, 21, 87]
+Result after merge: [9, 12, 21, 23, 34, 67, 87]
+
+Final Sorted Array: [9, 12, 21, 23, 34, 67, 87]
