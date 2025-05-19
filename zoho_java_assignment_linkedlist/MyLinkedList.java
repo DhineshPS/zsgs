@@ -256,7 +256,6 @@ class CustomLinkedList<T> {
         }
     }
 
-    // Print the list (for demonstration)
     public void printList() {
         Node current = head;
         while (current != null) {
