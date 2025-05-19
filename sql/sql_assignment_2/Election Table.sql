@@ -37,18 +37,13 @@ CREATE TABLE Results (
 );
 
 INSERT INTO Parties (party_id, party_name)
-VALUES
-(1, 'DMK'),
-(2, 'ADMK'),
-(3, 'TVK');
+VALUES (1, 'DMK'), (2, 'ADMK'), (3, 'TVK');
 
 INSERT INTO Districts (district_id, district_name)
-VALUES
-(1, 'Chennai'),
-(2, 'Kancheepuram');
+VALUES (1, 'Chennai'), (2, 'Kancheepuram');
 
 INSERT INTO Thoguthis (thoguthi_id, thoguthi_name, district_id)
-VALUES
+VALUES 
 (1, 'Vadapanani', 1),
 (2, 'Choolaimedu', 1),
 (3, 'Kundrathur', 2);
@@ -61,11 +56,18 @@ VALUES
 (4, 3, 'Gurusamy', 1, 1),
 (5, 3, 'Sneha', 2, 1);
 
-INSERT INTO Results (result_id, candidate_id, votes)
-VALUES
-(1, 1, 50000),
-(2, 2, 30000),
-(3, 3, 60000),
-(4, 4, 70000),
-(5, 5, 40000);
+DELIMITER $$
 
+CREATE PROCEDURE GenerateVotes()
+BEGIN
+  DECLARE cid INT DEFAULT 1;
+  WHILE cid <= (SELECT COUNT(*) FROM Candidates) DO
+    INSERT INTO Results (result_id, candidate_id, votes)
+    VALUES (cid, cid, FLOOR(20000 + RAND() * 80001));
+    SET cid = cid + 1;
+  END WHILE;
+END$$
+
+DELIMITER ;
+
+CALL GenerateVotes();

@@ -1,5 +1,6 @@
 -- Queries
 -- Finding Winner and Loser in a specific city (district, thoguthi)
+USE election;
 
 SELECT c.candidate_name, p.party_name, r.votes
 FROM Results r
@@ -85,7 +86,7 @@ JOIN Candidates c ON r.candidate_id = c.candidate_id
 JOIN Parties p ON c.party_id = p.party_id
 GROUP BY p.party_name
 ORDER BY SUM(r.votes) DESC
-LIMIT 1; 
+LIMIT 1 OFFSET 1; 
 
 
 -- To find the number of votes taken by each party in Tamil Nadu 
