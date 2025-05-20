@@ -19,7 +19,7 @@ CREATE TABLE Thoguthis (
 );
 
 CREATE TABLE Candidates (
-    candidate_id INT PRIMARY KEY,
+    candidate_id INT AUTO_INCREMENT PRIMARY KEY,
     party_id INT,
     candidate_name VARCHAR(100),
     thoguthi_id INT,
@@ -30,42 +30,62 @@ CREATE TABLE Candidates (
 );
 
 CREATE TABLE Results (
-    result_id INT PRIMARY KEY,
+    result_id INT AUTO_INCREMENT PRIMARY KEY,
     candidate_id INT,
     votes INT,
     FOREIGN KEY (candidate_id) REFERENCES Candidates(candidate_id)
 );
 
-INSERT INTO Parties (party_id, party_name)
-VALUES (1, 'DMK'), (2, 'ADMK'), (3, 'TVK');
+INSERT INTO Parties VALUES
+(1, 'DMK'),
+(2, 'ADMK'),
+(3, 'TVK'),
+(4, 'BJP'),
+(5, 'INC');
 
-INSERT INTO Districts (district_id, district_name)
-VALUES (1, 'Chennai'), (2, 'Kancheepuram');
+INSERT INTO Districts VALUES
+(1, 'Chennai'),
+(2, 'Kancheepuram'),
+(3, 'Madurai'),
+(4, 'Coimbatore'),
+(5, 'Trichy');
 
-INSERT INTO Thoguthis (thoguthi_id, thoguthi_name, district_id)
-VALUES 
-(1, 'Vadapanani', 1),
+INSERT INTO Thoguthis VALUES
+(1, 'Vadapalani', 1),
 (2, 'Choolaimedu', 1),
-(3, 'Kundrathur', 2);
+(3, 'Arumbakkam', 1),
 
-INSERT INTO Candidates (candidate_id, party_id, candidate_name, thoguthi_id, district_id)
-VALUES
-(1, 1, 'Sai', 1, 1),
-(2, 1, 'Vignesh', 2, 1),
-(3, 2, 'Mukesh', 3, 2),
-(4, 3, 'Gurusamy', 1, 1),
-(5, 3, 'Sneha', 2, 1);
+(4, 'Tambaram', 2),
+(5, 'Kundrathur', 2),
+(6, 'Sriperumbudur', 2),
+
+(7, 'Thirunagar', 3),
+(8, 'Akka Nagar', 3),
+(9, 'Anna Nagar', 3),
+
+(10, 'Gandhipuram', 4),
+(11, 'Kovai', 4),
+(12, 'R.K Nagar', 4),
+
+(13, 'Srirangam', 5),
+(14, 'Kuruku Theru', 5),
+(15, 'Thillai Nagar', 5);
+
+INSERT INTO Candidates (party_id, candidate_name, thoguthi_id, district_id)
+SELECT
+    p.party_id,
+    CONCAT(p.party_name, '_', t.thoguthi_name),
+    t.thoguthi_id,
+    t.district_id
+FROM Parties p
+JOIN Thoguthis t;
 
 DELIMITER $$
 
 CREATE PROCEDURE GenerateVotes()
 BEGIN
-  DECLARE cid INT DEFAULT 1;
-  WHILE cid <= (SELECT COUNT(*) FROM Candidates) DO
-    INSERT INTO Results (result_id, candidate_id, votes)
-    VALUES (cid, cid, FLOOR(20000 + RAND() * 80001));
-    SET cid = cid + 1;
-  END WHILE;
+    INSERT INTO Results (candidate_id, votes)
+    SELECT candidate_id, FLOOR(20000 + (RAND() * (100000 - 20000 + 1))) FROM Candidates;
 END$$
 
 DELIMITER ;
