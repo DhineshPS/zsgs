@@ -49,7 +49,8 @@ public class DLL {
         }
 
         if (current == null) {
-            throw new IndexOutOfBoundsException("Position out of bounds");
+            System.out.println("Position out of bounds");
+            return;
         }
 
         newNode.next = current.next;
@@ -103,7 +104,8 @@ public class DLL {
         }
 
         if (current == null) {
-            throw new IndexOutOfBoundsException("Position out of bounds");
+            System.out.println("Position out of bounds");
+            return;
         }
 
         if (current.next != null) {

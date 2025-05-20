@@ -43,7 +43,8 @@ public class SLL {
         }
 
         if (current == null) {
-            throw new IndexOutOfBoundsException("Position out of bounds");
+            System.out.println("Position out of bounds");
+            return;
         }
 
         newNode.next = current.next;
@@ -90,7 +91,8 @@ public class SLL {
         }
 
         if (current.next == null) {
-            throw new IndexOutOfBoundsException("Position out of bounds");
+            System.out.println("Position out of bounds");
+            return;
         }
 
         current.next = current.next.next;
